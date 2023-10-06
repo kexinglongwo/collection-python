@@ -14,17 +14,17 @@ class poke:
 
 def init():
     for i in range(0,10):
-      g.append([])
-      for j in range(0,20):
-         g[i].append(0)
-    
+        g.append([])
+        for _ in range(0,20):
+            g[i].append(0)
+
     for i in range(0,15+1):
         nums.append(str(int(i)))
     nums[11] = 'J'
     nums[12] = 'Q'
     nums[13] = 'K'
     nums[14] = 'A'
-    nums[15] = '2'    
+    nums[15] = '2'
     nums[0] = ''   
  
 def work():
@@ -34,15 +34,10 @@ def work():
             num = 3
         f.append([])
         f[i].append(poke(0,0))
-            
+
         while num > 0:
             x = random.randint(0,4)   #花色
-            if(x <= 3):
-                y = random.randint(3,15)  #点数
-                #print("x:",x,"y:",y)
-            else:
-                y = random.randint(0,1) #大小王
-                
+            y = random.randint(3,15) if (x <= 3) else random.randint(0,1)
             if(g[x][y] == 0):
                 g[x][y] = 1
                 if(x == 4 and y == 0):  #大王
@@ -83,6 +78,6 @@ if __name__ == "__main__":
         #print("player",i)
         for j in range(1,num+1):
             #print(f[i][j].ta," ",f[i][j].ch)
-            file.write(f[i][j].ta+" "+f[i][j].ch+"\n")
+            file.write(f"{f[i][j].ta} {f[i][j].ch}" + "\n")
         #print("\n")
     

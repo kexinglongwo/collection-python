@@ -3,8 +3,7 @@ import random
 def generate_decks():
     deck = ['1','2','3','4','5','6','7','8','9','J','Q','K','A']
     decks = [rank for rank in deck for i in range(4)]
-    decks.append('小王')
-    decks.append('大王')
+    decks.extend(('小王', '大王'))
     random.shuffle(decks)
     return decks
 # print(generate_decks())

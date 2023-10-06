@@ -1,4 +1,4 @@
-ori = [ [ 1 for i in range(5)] for j in range(10) ]
+ori = [[1 for _ in range(5)] for _ in range(10)]
 
 ori[2][2] = 3
 

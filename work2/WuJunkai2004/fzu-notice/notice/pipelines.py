@@ -15,7 +15,7 @@ from itemadapter import ItemAdapter
 
 class NoticePipeline:
     def open_spider(self, spider):
-        self.sql = SQL("{}{}.db".format(time.localtime().tm_mon, time.localtime().tm_mday))
+        self.sql = SQL(f"{time.localtime().tm_mon}{time.localtime().tm_mday}.db")
 
     def process_item(self, item, spider):
         annex_ids = []

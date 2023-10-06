@@ -12,8 +12,7 @@ elif y==max(m):
         print(y,z,x)
     else:
         print(y,x,z)
-else :
-    if x==min(m):
-        print(z,y,x)
-    else:
-        print(z,x,y)
+elif x==min(m):
+    print(z,y,x)
+else:
+    print(z,x,y)

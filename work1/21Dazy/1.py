@@ -1,9 +1,6 @@
 class myZoo:
     def __init__(self,animals=None):
-        if animals==None:
-            self.animals={}
-        else:
-            self.animals=animals
+        self.animals = {} if animals is None else animals
     def __str__(self):
         return str(self.animals)
     def __eq__(self,other):

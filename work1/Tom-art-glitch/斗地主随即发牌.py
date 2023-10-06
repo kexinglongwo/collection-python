@@ -1,7 +1,7 @@
 import random
 dic={}
 for i in range(1,14):
-    dic['%s'%(i)]=4
+    dic[f'{i}'] = 4
 dic['14']=1
 dic['15']=1
 i=0
@@ -26,11 +26,11 @@ for j in range(len(d)):
         r.sort()
         for t in range(len(r)):
             r[t]=dicp[str(r[t])]
-            f.write(' '+r[t])
+            f.write(f' {r[t]}')
 with open('other.txt','w',encoding='utf8')as p:
     for k in dic:
         while dic[k]!=0:
-            p.write(' '+dicp[k])
+            p.write(f' {dicp[k]}')
             dic[k]-=1
 
 

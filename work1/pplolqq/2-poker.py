@@ -1,8 +1,5 @@
 p={"3":4,"4":4,"5":4,"6":4,"7":4,"8":4,"9":4,"A10":4,"J":4,"Q":4,"_K":4,"c1":4,"c2":4,"joker1-small":1,"joker2-big":1}
-pl=[]
-for i in p:
-   pl.append(i)
-pl.sort()
+pl = sorted(p)
 import random
 a=[]
 b=[]
@@ -26,16 +23,13 @@ for i in [a,b,c]:
         p[r_num]-=1
         i.append(r_num)
 def restore(i):
-    i.sort()
-    temp=i[::-1]
-    temp=str(temp).replace("A10","10")
-    temp=temp.replace("_K","K")
-    temp=temp.replace("c1","1")
-    temp=temp.replace("c2","2")
-    return temp
-lll=[]
-for i in [a,b,c,d]:
-   lll.append(restore(i))
+   i.sort()
+   temp=i[::-1]
+   temp=str(temp).replace("A10","10")
+   temp=temp.replace("_K","K")
+   temp=temp.replace("c1","1")
+   return temp.replace("c2","2")
+lll = [restore(i) for i in [a,b,c,d]]
 for i in range(1,4):
     with open (f"player{i}.txt","w",encoding="utf-8") as f:
         f.write(f"玩家{[i]}的牌是:\n")

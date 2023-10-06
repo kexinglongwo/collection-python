@@ -2,17 +2,11 @@ a = int(input("a="))
 b = int(input("b="))
 c = int(input("c="))
 if b > a:
-    k = a
-    a = b
-    b = k
+    a, b = b, a
 if c > a:
-    k = a
-    a = c
-    c = k
+    a, c = c, a
 if c > b:
-    k = b
-    b = c
-    c = k
+    b, c = c, b
 print("%d>=%d>=%d" % (a, b, c))
 
 

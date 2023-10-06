@@ -16,8 +16,5 @@ class MyZoo:
             return li1 == li2
 
     def __len__(self):
-        num = 0
-        for i in self.animals.values():
-            num += i
-        return num
+        return sum(self.animals.values())
 

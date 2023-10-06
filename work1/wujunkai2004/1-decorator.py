@@ -3,8 +3,7 @@ import sys
 
 def get_time():
     local = time.localtime()
-    return "{}-{}-{} {}:{}:{}".format(local.tm_year, local.tm_mon, local.tm_mday,
-                                      local.tm_hour, local.tm_min, local.tm_sec)
+    return f"{local.tm_year}-{local.tm_mon}-{local.tm_mday} {local.tm_hour}:{local.tm_min}:{local.tm_sec}"
 
 def log(func):
     def debug(*args, **kwargs):
@@ -16,7 +15,7 @@ def log(func):
 
 @log
 def wait(sec):
-    print("wait for {} second{}".format(sec, "s"if(sec!=1)else""))
+    print(f'wait for {sec} second{"s" if sec != 1 else ""}')
     time.sleep(sec)
 
 

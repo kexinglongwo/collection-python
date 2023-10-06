@@ -26,20 +26,14 @@ def p3():
     print(a1)
 def p4():
     a=eval(input("输入一个列表:"))
-    b=[]
-    for i in a:
-        if type(i) ==int:
-            b.append(int(i))
+    b = [int(i) for i in a if type(i) ==int]
     b.sort()
     print(b)
     
 def p5():
     dict1={10231:"jack",10232:"john",10233:"ljj",10234:"zjl"}
     print(dict1)
-    dict2={}
-    for i in dict1:
-        if i%2==1:
-            dict2[i]=dict1[i]
+    dict2 = {i: dict1[i] for i in dict1 if i%2==1}
     print(dict2)
 def p6(list):
     set ={}

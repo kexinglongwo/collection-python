@@ -3,15 +3,12 @@
 自设输入示例：120 55 win ol fzu 88 fzcu
 自设输出示例：[55, 88, 120]
 '''
-y = []
+
 input_str = input("请有间隔地输入列表：")
 x = input_str.split()
 
 
-for key in x:
-    if(key.isdigit()==True):
-        y.append(key)
-
+y = [key for key in x if (key.isdigit()==True)]
 y = [eval(num) for num in y]
 y = sorted(y)
 

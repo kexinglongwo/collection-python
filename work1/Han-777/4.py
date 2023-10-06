@@ -27,20 +27,16 @@ class MyZoo:
         print(listA)
         listB = list(other.__dict__.keys())
         print(listB)
-        if len(listA) == len(listB):
-            for animal in listA:
-                if animal not in listB:
-                    return False
-            else:
-                return True
-        else:
+        if len(listA) != len(listB):
             return False
+        for animal in listA:
+            if animal not in listB:
+                return False
+        else:
+            return True
 
     def getLen(self):
-        totalNum = 0
-        for value in list(self.__dict__.values()):
-            totalNum += value
-        return totalNum
+        return sum(list(self.__dict__.values()))
 
 
 a = MyZoo({"pig": 2, "dog": 3})

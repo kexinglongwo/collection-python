@@ -22,7 +22,7 @@ class CONLUMN(list):
         self.name   = conlumn
         list.__init__(self)
 
-        self.cursor.execute("SELECT {} FROM {}".format( self.name, self.table))
+        self.cursor.execute(f"SELECT {self.name} FROM {self.table}")
         for i in [item[0] for item in self.cursor.fetchall()] :
             list.append(self, i)
 
@@ -42,7 +42,9 @@ class CONLUMN(list):
         list.insert(self, __id-1, __value)
 
     def insert(self, __id, __value):
-        self.cursor.execute('UPDATE {} set "{}"="{}" WHERE oid={}'.format(self.table, self.name, __value, __id))
+        self.cursor.execute(
+            f'UPDATE {self.table} set "{self.name}"="{__value}" WHERE oid={__id}'
+        )
         list.insert(self, __id-1, __value)
 
     def index(self, __value, __start = 0, __stop = 0x7fffffffffffffff):
@@ -58,14 +60,20 @@ class TABLE:
         return CONLUMN(self.cursor, self.name, __name)
 
     def create(self, __conlumns):
-        if(type(__conlumns)!=list and type(__conlumns)!=tuple):
+        if type(__conlumns) not in [list, tuple]:
             __conlumns = [__conlumns]
-        self.cursor.execute( 'CREATE TABLE {}\n({});'.format(self.name, ',\n'.join(['"{}" TEXT'.format(item) for item in __conlumns]) ) )
+        self.cursor.execute(
+            'CREATE TABLE {}\n({});'.format(
+                self.name, ',\n'.join([f'"{item}" TEXT' for item in __conlumns])
+            )
+        )
 
     def insert(self, __value) -> None:
-        if(type(__value)!=list and type(__value)!=tuple):
+        if type(__value) not in [list, tuple]:
             __value = [__value]
-        self.cursor.execute("INSERT INTO {} VALUES({})".format(self.name, ",".join(['"{}"'.format(item) for item in __value]) ) )
+        self.cursor.execute(
+            f"""INSERT INTO {self.name} VALUES({",".join([f'"{item}"' for item in __value])})"""
+        )
 
 
 
@@ -75,10 +83,14 @@ class SQL:
         self.cursor  = self.connect.cursor()
 
     def __setitem__(self, __name, __value) -> None:
-        if(type(__value)!=list and type(__value)!=tuple):
+        if type(__value) not in [list, tuple]:
             __value = [__value]
         try:
-            self.cursor.execute( 'CREATE TABLE {}\n({});'.format(__name, ',\n'.join(['{} TEXT'.format(item) for item in __value]) ) )
+            self.cursor.execute(
+                'CREATE TABLE {}\n({});'.format(
+                    __name, ',\n'.join([f'{item} TEXT' for item in __value])
+                )
+            )
         except sqlite3.OperationalError:
             pass
 
@@ -95,7 +107,7 @@ class SQL:
 
 
 def _shell():
-    while(True):
+    while True:
         cmmd = ''
         line = input('>>>').rstrip()
         cmmd += line
@@ -108,7 +120,7 @@ def _shell():
             try:
                 exec(cmmd)
             except Exception as e2:
-                print("ERROR ! : {}".format(e2))
+                print(f"ERROR ! : {e2}")
         else:
             print(result)
 

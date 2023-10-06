@@ -21,7 +21,7 @@ def fa():
 
     random.shuffle(all)  # 打乱
 
-    player1 = all[0:17]  # 切片左闭右开
+    player1 = all[:17]
     player2 = all[17:34]
     player3 = all[34:51]
     remain = all[51:]

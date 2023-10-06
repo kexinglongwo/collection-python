@@ -11,11 +11,10 @@ elif b >= a and b >= c:
         print("%d>=%d>=%d" % (b, a, c))
     else:
         print("%d>=%d>=%d" % (b, c, a))
+elif a >= b:
+    print("%d>=%d>=%d" % (c, a, b))
 else:
-    if a >= b:
-        print("%d>=%d>=%d" % (c, a, b))
-    else:
-        print("%d>=%d>=%d" % (c, b, a))
+    print("%d>=%d>=%d" % (c, b, a))
 
 
 

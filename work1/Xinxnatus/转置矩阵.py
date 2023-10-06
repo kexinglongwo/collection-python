@@ -1,11 +1,12 @@
 def produce():
-    a = [[1 for i in range(10)] for j in range(5)]
-    return a
+    return [[1 for _ in range(10)] for _ in range(5)]
 
 
 def transpose(matrix):
-    t_matrix = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
-    return t_matrix
+    return [
+        [matrix[j][i] for j in range(len(matrix))]
+        for i in range(len(matrix[0]))
+    ]
 
 
 a = produce()

@@ -29,10 +29,7 @@ class MyZoo(object):
 
     def __init__(self, animals = None):
         '''初始化'''
-        if animals==None:
-            self.animals={}
-        else:
-            self.animals=animals
+        self.animals = {} if animals is None else animals
         print("My Zoo!")
 
     def __str__(self):

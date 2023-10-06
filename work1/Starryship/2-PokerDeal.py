@@ -5,10 +5,11 @@
 player1.txt，player2.txt，player3.txt，others.txt四个文件中
 '''
 
+
 from random import shuffle
 
 # 定义玩家
-card = [i for i in range(1,55)]
+card = list(range(1,55))
 player1 = []
 player2 = []
 player3 = []
@@ -17,13 +18,10 @@ others = []
 #打乱牌的顺序
 shuffle(card)
 
-# 发牌
-i = 0
-while (i < 51):
+for i in range(0, 51, 3):
     player1.append(card[i])
     player2.append(card[i + 1])
     player3.append(card[i + 2])
-    i += 3
 others = card[51:54]
 
 #排序
@@ -36,14 +34,13 @@ def Flower(card,i):
     '''判断花色'''
     flower=0
     if card[i]%4==0:
-        flower="♠"
+        return "♠"
     elif card[i]%4==1:
-        flower="♦"
+        return "♦"
     elif card[i]%4==2:
-        flower="♣"
+        return "♣"
     else:
-        flower="♥"
-    return flower
+        return "♥"
 
 def changeCard(card):
     '''将数字改为其所代表的牌,按照斗地主中大小排序进行赋值'''
@@ -58,15 +55,15 @@ def changeCard(card):
             card[i]=Flower(card,i)+str((card[i]-1)//4+3)
         elif card[i]<53:
             if (card[i]-1)//4 ==8:
-                card[i] = Flower(card,i) + "J"
+                card[i] = f"{Flower(card, i)}J"
             elif (card[i]-1)//4 ==9:
-                card[i] = Flower(card,i) + "Q"
+                card[i] = f"{Flower(card, i)}Q"
             elif (card[i]-1)//4 ==10:
-                card[i] = Flower(card,i) + "K"
+                card[i] = f"{Flower(card, i)}K"
             elif (card[i]-1)//4 ==11:
-                card[i] = Flower(card,i) + "A"
+                card[i] = f"{Flower(card, i)}A"
             elif (card[i]-1)//4 ==12:
-                card[i] = Flower(card,i) + "2"
+                card[i] = f"{Flower(card, i)}2"
     return card
 #使用改变牌号的函数
 changeCard(player1)

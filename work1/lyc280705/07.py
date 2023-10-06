@@ -8,7 +8,7 @@ class goods:
     def display(self):
         print("商品编号：%s\n商品名称：%s\n商品单价：%s\n商品库存：%s\n商品数量：%s\n"%(self.num,self.name,self.price,self.total_number,self.number))
     def income(self):
-        print("商品总价：%s"%(self.price*(self.total_number-self.number)))
+        print(f"商品总价：{self.price * (self.total_number - self.number)}")
     def setdata(self):
         self.num=input('num:')
         self.name=input('name:')

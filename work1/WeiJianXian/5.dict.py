@@ -20,9 +20,5 @@ old_dict = {
     182300419: "Ann",
     182300420: "Mike",
 }
-new_dict = {}
-for id in old_dict:
-    if id % 2 == 0:
-        new_dict[id] = old_dict[id]
-
+new_dict = {id: old_dict[id] for id in old_dict if id % 2 == 0}
 print(new_dict)

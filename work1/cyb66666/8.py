@@ -6,10 +6,9 @@ from typing import List
 player1=[]
 player2=[]
 player3=[]
-others=[]
 card = []
 for i in range(1, 14):
-    for x in range(4):
+    for _ in range(4):
         if i==1:
             card.append('A')
         elif i==11:
@@ -20,19 +19,14 @@ for i in range(1, 14):
             card.append('K')
         else:
             card.append(i)
-card.append('JOKER')
-card.append('joker')
-for i in range(10):
+card.extend(('JOKER', 'joker'))
+for _ in range(10):
     random.shuffle(card)
-i=0
-while i<51:
+for i in range(0, 51, 3):
     player1.append(card[i])
     player2.append(card[i+1])
     player3.append(card[i+2])
-    i=i+3
-others.append(card[51])
-others.append(card[52])
-others.append(card[53])
+others = [card[51], card[52], card[53]]
 p1=open("player1.txt","w")
 p1.writelines(str(player1))
 p2=open("player2.txt","w")

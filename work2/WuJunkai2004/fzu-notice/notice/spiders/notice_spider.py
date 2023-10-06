@@ -31,7 +31,7 @@ class NoticeSpider(scrapy.Spider):
     allowed_domains = ["jwch.fzu.edu.cn"]
 
     def start_requests(self):
-        db = SQL("{}{}.db".format(time.localtime().tm_mon, time.localtime().tm_mday))
+        db = SQL(f"{time.localtime().tm_mon}{time.localtime().tm_mday}.db")
         db["notice"].create(["station", "title", "date", "url", "is having annex", "oid of annex"])
         db["annex"] .create(["name", "url", "download times"])
         del db
@@ -43,7 +43,7 @@ class NoticeSpider(scrapy.Spider):
     def parse_list(self, response):
         global got,is_create_information
 
-        db = SQL("{}{}.db".format(time.localtime().tm_mon, time.localtime().tm_mday))
+        db = SQL(f"{time.localtime().tm_mon}{time.localtime().tm_mday}.db")
         if(not is_create_information):
             db['information'].create(['save time', 'totol pages'])
             db['information'].insert([
@@ -75,7 +75,7 @@ class NoticeSpider(scrapy.Spider):
         #        fout.write(response.body)
         except:
             self.log( f"{filename} hava an error in saving process" )
-        self.log("第{}/{}页爬取完毕".format(got-1, want))
+        self.log(f"第{got - 1}/{want}页爬取完毕")
 
         result = NoticeItem()
 
@@ -87,14 +87,14 @@ class NoticeSpider(scrapy.Spider):
             result['date']      = response.xpath('.').re('\d{4}-\d{2}-\d{2}')[0]
             result['url']       = response.url
         except Exception as e:
-            self.log("解析 {} 的基础数据失败".format(filename))
-            self.log("发生了 {} 错误".format(e))
+            self.log(f"解析 {filename} 的基础数据失败")
+            self.log(f"发生了 {e} 错误")
 
         try:
             result['content'] = '\n'.join( [ item.xpath('string(.)').get() for item in response.xpath('//div[@class="v_news_content"]/p') ] )
         except Exception as e:
-            self.log("解析 {} 的内容失败".format(filename))
-            self.log("发生了 {} 错误".format(e))
+            self.log(f"解析 {filename} 的内容失败")
+            self.log(f"发生了 {e} 错误")
 
         try:
             annex = response.xpath('//ul[@style="list-style-type:none;"]/li')
@@ -106,8 +106,8 @@ class NoticeSpider(scrapy.Spider):
                     "download times": get_times( item.xpath('./span/script/text()').get() )
                 })
         except Exception as e:
-            self.log("解析 {} 的附件失败".format(filename))
-            self.log("发生了 {} 错误".format(e))
+            self.log(f"解析 {filename} 的附件失败")
+            self.log(f"发生了 {e} 错误")
 
 
         yield result
