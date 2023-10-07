@@ -8,7 +8,10 @@ class commodity:
         self.__total=int(total)
         self.__last=int(last)
     def display(self):
-        print('商品序号:{} 商品名:{} 单价:{} 总数量:{} 剩余数量:{}'.format(self.__num,self.__name,self.__price,self.__total,self.__last),end='\n')
+        print(
+            f'商品序号:{self.__num} 商品名:{self.__name} 单价:{self.__price} 总数量:{self.__total} 剩余数量:{self.__last}',
+            end='\n',
+        )
     def income(self):
         return self.__price*(self.__total-self.__last)
     def setdata(self,num,name,price,total,last):

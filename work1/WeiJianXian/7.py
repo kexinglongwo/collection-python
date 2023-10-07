@@ -7,14 +7,14 @@ class item(object):
         self.remain = remain
 
     def display(self):
-        print("ID: " + str(self.id))
-        print("Name: " + self.name)
-        print("Price: " + str(self.price))
-        print("Number: " + str(self.number))
-        print("Remaining: " + str(self.remain))
+        print(f"ID: {str(self.id)}")
+        print(f"Name: {self.name}")
+        print(f"Price: {str(self.price)}")
+        print(f"Number: {str(self.number)}")
+        print(f"Remaining: {str(self.remain)}")
 
     def income(self):
-        print("Income: " + str(self.price * (self.number - self.remain)))
+        print(f"Income: {str(self.price * (self.number - self.remain))}")
 
     def setdata(self):
         self.id = int(input("id:"))

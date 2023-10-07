@@ -2,7 +2,7 @@
 def main():
     # 输入列表,使用逗号隔开
     a = input('列表:').split(",")
-    for index,element in enumerate(a):
+    for element in a:
         if (not element.isdigit()):
             a.remove(element)
             # a.pop(index)

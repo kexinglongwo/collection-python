@@ -31,7 +31,7 @@ if __name__=='__main__':
             time=re.findall(pattern_time,''.join(li.xpath('./span/text()|./span/font/text()')))[0]#通知时间
             name=''.join(re.findall(pattern_name,li.xpath('./text()')[1]))#通知人
             title=li.xpath('./a/text()')[0]#通知的标题
-            sql1="insert into notice (name,title,detail_url,time) values('%s','%s','%s','%s')"%(name,title,detail_url,time)
+            sql1 = f"insert into notice (name,title,detail_url,time) values('{name}','{title}','{detail_url}','{time}')"
             cur.execute(sql1)
             #对detail_url访问提取附件
             detail_page_text=requests.get(url=detail_url,headers=headers).content
@@ -42,7 +42,7 @@ if __name__=='__main__':
                 ap_name=dap_li.xpath('./a//text()')[0]
                 ap_url='https://jwch.fzu.edu.cn'+dap_li.xpath('./a/@href')[0]#附件地址
                 a = re.findall(pattern_num, dap_li.xpath('./span//text()')[0])
-                u = 'https://jwch.fzu.edu.cn/system/resource/code/news/click/clicktimes.jsp?wbnewsid=' + a[0] + '&owner=' + a[1] + '&type=wbnewsfile&randomid=nattach'
+                u = f'https://jwch.fzu.edu.cn/system/resource/code/news/click/clicktimes.jsp?wbnewsid={a[0]}&owner={a[1]}&type=wbnewsfile&randomid=nattach'
                 ui = json.loads(requests.get(url=u, headers=headers).text)#附件下载次数
                 ap_num=int(ui['wbshowtimes'])#附件名字
     db.commit()

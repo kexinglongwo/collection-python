@@ -12,25 +12,15 @@ for i in list1:
 # 法二：使用算法
 print("\nfunc2:", end="")
 if (x < y):
-    t = x
-    x = y
-    y = t
+    x, y = y, x
     if (y < z):
-        t = y
-        y = z
-        z = t
+        y, z = z, y
     elif (x < z):
-        t = x
-        x = z
-        z = t
+        x, z = z, x
 elif (y < z):
-    t = y
-    y = z
-    z = t
+    y, z = z, y
     if (x<y):
-        t = x
-        x = y
-        y = t
+        x, y = y, x
 print(x, y, z)
 
 # 法三：原地排序

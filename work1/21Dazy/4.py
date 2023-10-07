@@ -1,12 +1,7 @@
 import re
 def judge(password):
     model=r"^[a-zA-Z0-9]{6,18}$"
-    match=re.match(model,password)
-    
-    if match:
-        return True
-    else:
-        return False
+    return bool(match := re.match(model,password))
 password1 = "Abc!"
 password2="abc12345678900000000000000"
 password3="abc123"

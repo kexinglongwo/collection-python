@@ -12,7 +12,7 @@ def comprison(one, two):
 
 def choose():
     result = []
-    for i in range(17):
+    for _ in range(17):
         get = random.randrange(0, 54)
         while( not pool[get] ):
             get = random.randrange(0, 54)
@@ -21,11 +21,7 @@ def choose():
     return result
 
 def save(get, file=''):
-    if(file):
-        fout = open(file, 'w+')
-    else:
-        fout = sys.stdout
-    
+    fout = open(file, 'w+') if file else sys.stdout
     print(' '.join( sorted(get, key=functools.cmp_to_key(comprison) ) ), file=fout)
 
     if(file):

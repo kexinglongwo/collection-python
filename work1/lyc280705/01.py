@@ -5,24 +5,19 @@ Z=int(input())
 if X<Y:
     if Y<Z:
         print(Z,Y,X)
+    elif X>Z:
+        print(Y,X,Z)
     else:
-        if X>Z:
-            print(Y,X,Z)
-        else:
-            print(Y,Z,X)
+        print(Y,Z,X)
+elif Y<Z:
+    if X>Z:
+        print(X,Z,Y)
+    else:
+        print(Z,X,Y)
 else:
-    if Y<Z:
-        if X>Z:
-            print(X,Z,Y)
-        else:
-            print(Z,X,Y)
-    else:
-        print(X,Y,Z)
+    print(X,Y,Z)
 
-#方法2
-numbers = []
-for i in range(3):
-    numbers.append(int(input()))
+numbers = [int(input()) for _ in range(3)]
 numbers.sort(reverse=True)
 for j in numbers:
     print(j,end=" ")

@@ -25,8 +25,7 @@ class Poke:
     @classmethod
     def pokeInit(cls):
         cls.poke = [flower + number for flower in cls.__flowers for number in cls.__numbers]
-        for key in list(cls.__king.keys()):
-            cls.poke.append(key)
+        cls.poke.extend(iter(list(cls.__king.keys())))
 
     print("welcome to Poke game".center(100, "-"))
 
@@ -41,7 +40,7 @@ class Poke:
 
     @classmethod
     def deal(cls):
-        for card in range(17):
+        for _ in range(17):
             cls.player1.append(cls.poke.pop(0))
             cls.player2.append(cls.poke.pop(0))
             cls.player3.append(cls.poke.pop(0))
@@ -82,9 +81,10 @@ class Poke:
             for j in range(n - i - 1 - kingFlag):
                 if cls.__numbers.index(listName[j][1:]) > cls.__numbers.index(listName[j + 1][1:]):
                     listName[j], listName[j + 1] = listName[j + 1], listName[j]
-                # sort flower
                 elif cls.__numbers.index(listName[j][1:]) == cls.__numbers.index(listName[j + 1][1:]):
-                    if cls.__flowers.index(listName[j][0:1]) > cls.__flowers.index(listName[j + 1][0:1]):
+                    if cls.__flowers.index(listName[j][:1]) > cls.__flowers.index(
+                        listName[j + 1][:1]
+                    ):
                         listName[j], listName[j + 1] = listName[j + 1], listName[j]
 
         cls.inputFile(cls.player1, "player1.txt")
@@ -94,11 +94,10 @@ class Poke:
 
     @classmethod
     def inputFile(cls, playerList, fileName):
-        file = open(f"{fileName}", "w+", encoding='utf-8')
-        for card in reversed(playerList):
-            file.write(card)
-            file.write(" ")
-        file.close()
+        with open(f"{fileName}", "w+", encoding='utf-8') as file:
+            for card in reversed(playerList):
+                file.write(card)
+                file.write(" ")
 
     @classmethod
     def grabLandlord(cls, playerNum, playerList):

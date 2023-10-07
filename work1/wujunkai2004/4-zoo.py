@@ -7,7 +7,9 @@ class MyZoo:
         return len(self.anmials.keys())
     
     def __str__(self) -> str:
-        return "\n".join( "{} have {}".format(name, self.anmials[name]) for name in self.anmials.keys() )
+        return "\n".join(
+            f"{name} have {self.anmials[name]}" for name in self.anmials.keys()
+        )
     
     def __eq__(self, other):
         return sorted(self.anmials.keys()) == sorted(other.anmials.keys())

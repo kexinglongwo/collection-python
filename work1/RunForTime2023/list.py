@@ -1,4 +1,4 @@
-a=[[1 for i in range(10)] for i in range(5)];
+a = [[1 for _ in range(10)] for _ in range(5)];
 for i in range(5):
     print(a[i])
 print("\n")

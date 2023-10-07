@@ -7,12 +7,21 @@ numbers = {0: '3', 1: '4', 2: '5', 3: '6', 4: '7', 5: '8', 6: '9', 7: '10', 8: '
 
 
 def comp(a, b):
-    return -1 if (not (a < 52 and b < 52) and a > b) or (
-            a < 52 and b < 52 and (a % 13 > b % 13 or (a % 13 == b % 13 and a // 13 > b // 13))) else 1
+    return (
+        -1
+        if (a >= 52 or b >= 52)
+        and a > b
+        or (
+            a < 52
+            and b < 52
+            and (a % 13 > b % 13 or (a % 13 == b % 13 and a // 13 > b // 13))
+        )
+        else 1
+    )
 
 
 # 发牌
-All = set([i for i in range(54)])
+All = set(list(range(54)))
 t1 = set(random.sample(All, 17))
 t2 = set(random.sample(All - t1, 17))
 t3 = set(random.sample(All - t1 - t2, 17))
@@ -25,12 +34,12 @@ for i in range(4):
     if (i == 3):
         t = open("others.txt", "w", encoding='utf-8')
     else:
-        t = open("player" + str(i + 1) + ".txt", "w", encoding='utf-8')
+        t = open(f"player{str(i + 1)}.txt", "w", encoding='utf-8')
     for x in player[i]:
-        if x == 53:
-            t.write("大王 ")
-        elif x == 52:
+        if x == 52:
             t.write("小王 ")
+        elif x == 53:
+            t.write("大王 ")
         else:
             t.write(numbers[x % 13] + color[x // 13] + ' ')
     t.close()

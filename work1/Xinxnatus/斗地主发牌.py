@@ -3,7 +3,7 @@ import random
 def shuffle(Poker):
     player1, player2, player3, others = [], [], [], []
     Poker_copy = Poker.copy()
-    for i in range(17):
+    for _ in range(17):
         for player in [player1, player2, player3]:
             r = Poker_copy.pop(random.randint(0, len(Poker_copy)-1))
             player.append(r)
@@ -14,8 +14,7 @@ def shuffle(Poker):
 
 def sort_player(player):
     order = {'3': 0, '4': 1, '5': 2, '6': 3, '7': 4, '8': 5, '9': 6, '10': 7, 'J': 8, 'Q': 9, 'K': 10, 'A': 11, '2': 12, 'Little King': 13, 'Big King': 14}
-    sorted_player = sorted(player, key=lambda n: order[n])
-    return sorted_player
+    return sorted(player, key=lambda n: order[n])
 
 
 def save(player,filename):

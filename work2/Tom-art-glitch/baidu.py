@@ -18,17 +18,10 @@ if __name__=='__main__':
     month=[31,29,31,30,31,30,31,31,30,31,30,31]
     for i in range(6):
         page_text = requests.get((url+str(num-i))%(str(i+1))).json()
-        if i+1>10:
-            l1=str(i+1)
-        else:
-            l1='0'+str(i+1)
+        l1 = str(i+1) if i > 9 else f'0{str(i + 1)}'
         for j in range(month[i]):
-            if j+1<10:
-                l2=l1+'0'+str(j+1)
-                c=page_text[l1][l2]
-            else:
-                l2=l1+str(j+1)
-                c=page_text[l1][l2]
+            l2 = f'{l1}0{str(j + 1)}' if j < 9 else l1+str(j+1)
+            c=page_text[l1][l2]
             for d in c:
                 year=d['year']
                 title=''.join(re.findall(pattern,d['title']))
@@ -38,11 +31,11 @@ if __name__=='__main__':
                     tree=etree.HTML(desct)
                     de=re.sub(pattern_2,'',''.join(tree.xpath('//text()'))).replace("'",'')
                     print(len(de))
-                    sql = "insert into bd (year,title,type,de) values('%s','%s','%s','%s')"%(year, title, type_, de)
+                    sql = f"insert into bd (year,title,type,de) values('{year}','{title}','{type_}','{de}')"
                     cur.execute(sql)
                     db.commit()
                 else:
-                    sql = "insert into bd (year,title,type,de) values('%s','%s','%s','%s')" % (year, title, type_, '')
+                    sql = f"insert into bd (year,title,type,de) values('{year}','{title}','{type_}','')"
                     cur.execute(sql)
     #cur.execute("delete from bd")
     db.commit()

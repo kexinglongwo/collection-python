@@ -1,9 +1,6 @@
 class Myzoo():
     def __init__(self,animals = None):
-        if animals is None:
-            self.animals = {}
-        else:
-            self.animals = animals
+        self.animals = {} if animals is None else animals
         print('My Zoo!')
     def __str__(self):
         return '\n'.join(f'{animal} : {count}' for animal,count in self.animals.items())

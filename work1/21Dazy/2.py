@@ -14,10 +14,8 @@ def FAPAI():
     player=[1,2,3]
     player_=[1,2,3]
     dizhu=0
-    pingming=[]
     for i in c:
-        for j in b:
-         a.append(i+j)#列表a存放所有牌
+        a.extend(i+j for j in b)
     dizhu=0
 
     flag=0
@@ -44,17 +42,13 @@ def FAPAI():
     player_.pop(dizhu-1)
     for i in player_:
         print("农民是",i)
-    
+
     p="player"
-    for i in player_:
-        pingming.append("player"+str(i))
-    
+    pingming = [f"player{str(i)}" for i in player_]
     for i in range(len(pingming)):
-        t=open(pingming[i]+".txt","w+",encoding="utf-8")
-        t.write(wrichangestr(a[i*17:i*17+17]))
-        t.close()
-    p=open("player"+str(dizhu)+".txt","w+",encoding="utf-8")
-    p.write(wrichangestr(a[34::]))
-    p.close()
+        with open(f"{pingming[i]}.txt", "w+", encoding="utf-8") as t:
+            t.write(wrichangestr(a[i*17:i*17+17]))
+    with open(f"player{str(dizhu)}.txt", "w+", encoding="utf-8") as p:
+        p.write(wrichangestr(a[34::]))
 
 FAPAI()

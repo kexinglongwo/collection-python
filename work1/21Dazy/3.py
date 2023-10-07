@@ -11,7 +11,7 @@ def daozhi(a):
 print("你要生成几行几列的矩阵")
 Ind=int(input("行数是"))
 Clo=int(input("列数是"))
-list1=[[random.randint(0,100) for i in range(Clo)] for j in range(Ind) ]
+list1 = [[random.randint(0,100) for _ in range(Clo)] for _ in range(Ind)]
 print(daozhi())
 
 '''

@@ -5,12 +5,11 @@ lis1 = ('A',) + tuple(map(lambda l: str(l), range(3, 11))) + ('J', 'Q', 'K', '2'
 lis2 = ('黑桃', '红桃', '方块', '梅花')
 lis3 = tuple(f'player{i + 1}' for i in range(3)) + ('others',)
 for i in range(13):
-    for j in range(4):
-        poke.append({lis2[j] + lis1[i]: i * 4 + j})
+    poke.extend({lis2[j] + lis1[i]: i * 4 + j} for j in range(4))
 poke.extend(({'大王': 52}, {'小王': 53}))
 random.shuffle(poke)
 
-new_poke = [[] for i in range(4)]
+new_poke = [[] for _ in range(4)]
 for i in range(4):
     tem_dic = {}
     if i == 3:

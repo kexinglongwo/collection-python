@@ -1,4 +1,4 @@
-list1 = [[1 for i in range(10)] for j in range(5)]
+list1 = [[1 for _ in range(10)] for _ in range(5)]
 list2 = [[list1[j][i] for j in range(5)] for i in range(10)]
 print('原始矩阵：')
 for row in list1:

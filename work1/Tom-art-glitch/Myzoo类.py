@@ -1,20 +1,15 @@
 class Myzoo(object):
     def __init__(self,d):
-        if len(d)==0:
-            self.animals={}
-        else:
-            self.animals=d
+        self.animals = {} if len(d)==0 else d
         print("My zoo!")
     def print(self):
         for i in self.animals:
-            print(i+':',self.animals[i])
+            print(f'{i}:', self.animals[i])
 
     def __eq__(self, other):
         return self.animals.keys()==other.animals.keys()
     def len(self):
-        s=0
-        for i in self.animals:
-            s+=self.animals[i]
+        s = sum(self.animals[i] for i in self.animals)
         print(s)
 myzoo1 = Myzoo({'pig':1})
 myzoo2 = Myzoo({'pig':5})
